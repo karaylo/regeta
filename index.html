@@ -1,224 +1,126 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Регетунцю)</title>
-  <meta name="description" content="Простий статичний сайт для GitHub Pages — портфоліо та контактна сторінка." />
-
-  <!-- Базові стилі -->
+  <meta charset="UTF-8">
+  <title>Хроніки сатанинського кугута</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root{
-      --bg: #f7f7fb;
-      --card: #ffffff;
-      --text: #222;
-      --muted: #666;
-      --accent: #2b78f4;
-      --radius: 12px;
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: #111;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
+    #game {
+      max-width: 700px;
+      text-align: center;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
     }
-
-    .container{max-width:1000px;margin:40px auto;padding:24px;}
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:24px;
+    #sceneText {
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      min-height: 150px;
     }
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-    .logo{
-      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6ab3ff);
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
-      box-shadow:0 6px 18px rgba(43,120,244,0.14);
+    button {
+      background: #ff4747;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.2s;
     }
-    nav{display:flex;gap:12px;align-items:center}
-    a.btn{
-      text-decoration:none;padding:8px 14px;border-radius:8px;background:var(--accent);color:white;font-weight:600;
-      box-shadow:0 6px 12px rgba(43,120,244,0.12);
+    button:hover {
+      background: #e63a3a;
+      transform: scale(1.05);
     }
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 320px;
-      gap:24px;
-      align-items:center;
-      margin-bottom:28px;
+    .shake {
+      animation: shake 0.5s;
     }
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:0 6px 24px rgba(15,15,40,0.04);
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-5px, 3px); }
+      40% { transform: translate(5px, -3px); }
+      60% { transform: translate(-5px, 3px); }
+      80% { transform: translate(5px, -3px); }
+      100% { transform: translate(0, 0); }
     }
-    h1{margin:0 0 8px 0;font-size:28px}
-    p.lead{margin:0;color:var(--muted)}
-
-    /* Quick info box */
-    .meta{font-size:14px;color:var(--muted);margin-top:12px}
-    .links{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-    .links a{color:var(--accent);text-decoration:none;font-weight:600}
-
-    /* Portfolio grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
-    .proj{padding:14px;border-radius:10px;background:linear-gradient(180deg,#fff, #fbfdff);border:1px solid rgba(15,15,40,0.03)}
-    .proj h3{margin:0 0 6px 0;font-size:16px}
-    .proj p{margin:0;color:var(--muted);font-size:14px}
-
-    /* Contact */
-    .contact-form{display:flex;flex-direction:column;gap:8px}
-    input[type="text"], input[type="email"], textarea{
-      padding:10px;border-radius:8px;border:1px solid #e6e9ef;background:transparent;font-size:14px;
-      outline:none;
+    footer {
+      margin-top: 25px;
+      font-size: 0.9em;
     }
-    textarea{min-height:100px;resize:vertical}
-    .muted{color:var(--muted);font-size:13px}
-
-    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
-
-    /* Responsive */
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr}
-      .container{margin:20px;padding:16px}
-      nav{display:none}
+    footer a {
+      display: inline-block;
+      margin: 6px;
+      padding: 10px 16px;
+      background: #58f5c4;
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    footer a:hover {
+      background: #3bb896;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a class="brand" href="#">
-        <div class="logo">MP</div>
-        <div>
-          <strong>Мій сайт</strong><div class="muted" style="font-size:12px">Портфоліо · GitHub Pages</div>
-        </div>
-      </a>
-
-      <nav>
-        <a class="btn" href="#projects">Проекти</a>
-        <a class="btn" href="#contact">Контакти</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="card">
-        <h1>Грузи когута 👋</h1>
-        <p class="lead">Це вебсторінка, яка призначена регетунцьові.</p>
-
-        <div class="meta">
-          <div><strong>Технології:</strong> HTML • CSS • Denis</div>
-          <div style="margin-top:8px" class="muted">Регетун-Регетун знімканув він той пісюн.</div>
-        </div>
-
-      </div>
-
-      <aside class="card">
-        <strong>Швидкий Регета</strong>
-        <div class="meta" style="margin-top:8px">Денис: <br><code>Барабрис, Дуполиз, Яйцелиз, Тракторист./</code></div>
-
-        <div style="margin-top:16px">
-          <strong>Поради як не злити Сергія</strong>
-          <ul style="padding-left:18px;margin:8px 0;color:var(--muted);font-size:14px">
-            <li>Вчасно кланяйся: Бажано низько, щоб лобом землю дістати. Це ж не Сергій має чекати, поки ти привітаєшся, а ти — щоб він дозволив.</li>
-            <li>Не смій сперечатися: Його слово — це не просто закон, це Конституція, Біблія й Тора в одному флаконі.</li>
-            <li>Хвали кожен рух: Навіть якщо він просто відкрив двері — "ого, Сергію, яка вишуканість!".</li>
-          </ul>
-        </div>
-      </aside>
-    </section>
-
-    <section id="projects">
-      <div class="card">
-        <h2 style="margin-top:0">Мої проекти</h2>
-        <div class="grid">
-          <div class="proj">
-            <h3>Проект 1</h3>
-            <p>Опис проекту — односторінковий лендинг з адаптивним дизайном.</p>
-          </div>
-          <div class="proj">
-            <h3>Проект 2</h3>
-            <p>Портфоліо фотографа — галерея, легка оптимізація зображень.</p>
-          </div>
-          <div class="proj">
-            <h3>Проект 3</h3>
-            <p>Документація до бібліотеки — статичний сайт з навігацією.</p>
-          </div>
-          <div class="proj">
-            <h3>Проект 4</h3>
-            <p>Маленький SPA на чистому JS (без серверної частини).</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:18px">
-      <div class="card">
-        <h2 style="margin-top:0">Контакти</h2>
-        <p class="muted">Можеш написати на пошту або скористатись формою (функція відправки — умовна, бо потрібен бекенд).</p>
-
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <input type="text" id="name" placeholder="Ім'я" required />
-          <input type="email" id="email" placeholder="Email" required />
-          <textarea id="message" placeholder="Повідомлення" required></textarea>
-          <div style="display:flex;gap:8px;align-items:center">
-            <button class="btn" type="submit">Надіслати</button>
-            <a href="mailto:your.email@example.com" style="align-self:center;text-decoration:none;color:var(--accent);font-weight:600">Надіслати на пошту</a>
-          </div>
-          <div id="formStatus" class="muted" style="margin-top:8px"></div>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Мій сайт — зроблено для GitHub Pages · Статичний хостинг
+  <div id="game">
+    <div id="sceneText">Натисни "Почати", щоб увійти в легенду 🐓</div>
+    <button id="nextBtn">Почати</button>
+    <footer id="contact" style="display:none;">
+      <h3>Зворотній зв'язок</h3>
+      <a href="https://discord.gg/QQKEwWMGBH" target="_blank">Наш Discord</a>
+      <a href="mailto:potukxp@gmail.com">Написати на пошту</a>
     </footer>
   </div>
 
-  <!-- Легка функціональність JS -->
   <script>
-    // Авто-вставка року
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const scenes = [
+      "Було то пізньої ночі після дербі ФК 'Хлопаки' з 'Шахраями'. У шинку сиділи Регета, Денис, Смик, Кіш, Маркіян, Кабіна та Олена.",
+      "Регета витяг патицю: 'Ходімо до Коцюруба того кугута йобнем!'",
+      "Денис рже: 'Кугут страшний як твій голем у доті, але я в темі!'",
+      "Смик хряпнув самогонки: 'Завтра маю курей грузити, але піду на цирк!'",
+      "Вночі вони підкрались до хати Коцюруба. Кугут сидів червоний як диявол.",
+      "Кугут: 'КУКУРИКУУУ, БЛЯДЬ!' — всі охуїли.",
+      "Кіш кинувся — кугут клюнув його в лоба! Маркіян аж пиво розлив.",
+      "Очі кугута засяяли зеленим... Василь почав сцятись: 'То шо, півень-чаклун?'",
+      "Вийшов Коцюруб у трусах з пивом: 'Мого кугута ворувати? Ви шо, довбойоби?'",
+      "Кугут заговорив людським голосом: 'Я є прокляття села! Хто мене торкнеться — стане куркою!'",
+      "Регета: 🐓 (курка з патицею), Денис: 🐥 'Голем!', Смик: 🚜-курка, Назар: курка-будильник, Маркіян: курка з пивом, Кабіна: курка з ноутом, Олена: курка в сукні.",
+      "Коцюруб попивав пиво і ржав: 'Я ж казав, шо мій кугут сатанинський!'",
+      "🐓 Game Over: всі стали курками!"
+    ];
 
-    // Кнопка "скопіювати приклад посилання"
-    document.getElementById('copyLink').addEventListener('click', function (e) {
-      e.preventDefault();
-      const example = 'https://твій-нік.github.io/імя-репозиторію/';
-      navigator.clipboard?.writeText(example).then(() => {
-        alert('Приклад посилання скопійовано:\n' + example);
-      }).catch(()=> {
-        prompt('Скопіюй це посилання вручну:', example);
-      });
-    });
+    let sceneIndex = 0;
+    const sceneText = document.getElementById("sceneText");
+    const nextBtn = document.getElementById("nextBtn");
+    const contact = document.getElementById("contact");
 
-    // Фіктивна відправка форми (показує повідомлення)
-    function handleSubmit(event){
-      event.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const msg = document.getElementById('message').value.trim();
-      const status = document.getElementById('formStatus');
-
-      if(!name || !email || !msg){
-        status.textContent = 'Заповни всі поля, будь ласка.';
-        return;
+    nextBtn.addEventListener("click", () => {
+      if (sceneIndex < scenes.length) {
+        sceneText.textContent = scenes[sceneIndex];
+        sceneIndex++;
+        if (sceneIndex === 6) {
+          document.body.classList.add("shake");
+          setTimeout(() => document.body.classList.remove("shake"), 500);
+          new Audio("https://www.fesliyanstudios.com/play-mp3/4385").play();
+        }
+      } else {
+        sceneText.textContent = "Кінець історії. Тепер ти знаєш правду 🐔";
+        nextBtn.style.display = "none";
+        contact.style.display = "block";
       }
-
-      // Оскільки на GitHub Pages немає бекенду, показуємо повідомлення.
-      status.textContent = 'Дякую! Повідомлення сформоване локально — для відправки використай пошту.';
-      // Тут можна додати відправку через third-party (Formspree, Netlify Forms тощо).
-      setTimeout(()=> status.textContent = '', 6000);
-      event.target.reset();
-    }
+    });
   </script>
 </body>
 </html>
