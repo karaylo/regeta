@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Мій GitHub Pages сайт</title>
+  <title>Регетунцю)</title>
   <meta name="description" content="Простий статичний сайт для GitHub Pages — портфоліо та контактна сторінка." />
 
   <!-- Базові стилі -->
@@ -52,4 +52,177 @@
       display:grid;
       grid-template-columns:1fr 320px;
       gap:24px;
-      align-it
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 6px 24px rgba(15,15,40,0.04);
+    }
+    h1{margin:0 0 8px 0;font-size:28px}
+    p.lead{margin:0;color:var(--muted)}
+
+    /* Quick info box */
+    .meta{font-size:14px;color:var(--muted);margin-top:12px}
+    .links{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .links a{color:var(--accent);text-decoration:none;font-weight:600}
+
+    /* Portfolio grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .proj{padding:14px;border-radius:10px;background:linear-gradient(180deg,#fff, #fbfdff);border:1px solid rgba(15,15,40,0.03)}
+    .proj h3{margin:0 0 6px 0;font-size:16px}
+    .proj p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Contact */
+    .contact-form{display:flex;flex-direction:column;gap:8px}
+    input[type="text"], input[type="email"], textarea{
+      padding:10px;border-radius:8px;border:1px solid #e6e9ef;background:transparent;font-size:14px;
+      outline:none;
+    }
+    textarea{min-height:100px;resize:vertical}
+    .muted{color:var(--muted);font-size:13px}
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .container{margin:20px;padding:16px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#">
+        <div class="logo">MP</div>
+        <div>
+          <strong>Мій сайт</strong><div class="muted" style="font-size:12px">Портфоліо · GitHub Pages</div>
+        </div>
+      </a>
+
+      <nav>
+        <a class="btn" href="#projects">Проекти</a>
+        <a class="btn" href="#contact">Контакти</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <h1>Привіт 👋</h1>
+        <p class="lead">Це приклад статичної вебсторінки, яку можна швидко розгорнути на GitHub Pages. Підходить для портфоліо, резюме або простих лендингів.</p>
+
+        <div class="meta">
+          <div><strong>Технології:</strong> HTML • CSS • JavaScript (без бекенду)</div>
+          <div style="margin-top:8px" class="muted">Збережи цей файл як <code>index.html</code> і залий у свій репозиторій — далі увімкни Pages у налаштуваннях GitHub.</div>
+        </div>
+
+        <div class="links">
+          <a id="copyLink" href="#" title="Скопіювати URL">📋 Скопіювати приклад посилання</a>
+          <a href="#contact">✉️ Зв'язатися зі мною</a>
+        </div>
+      </div>
+
+      <aside class="card">
+        <strong>Швидкий приклад</strong>
+        <div class="meta" style="margin-top:8px">Сайт: <br><code>https://твій-нік.github.io/ім'я-репозиторію/</code></div>
+
+        <div style="margin-top:16px">
+          <strong>Поради</strong>
+          <ul style="padding-left:18px;margin:8px 0;color:var(--muted);font-size:14px">
+            <li>Назви репозиторій: <code>твій-нік.github.io</code> — щоб сайт був в корені.</li>
+            <li>Або використовуй папку та гілку <code>main</code> → Pages.</li>
+            <li>Використовуй лише статичні файли (HTML/CSS/JS).</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects">
+      <div class="card">
+        <h2 style="margin-top:0">Мої проекти</h2>
+        <div class="grid">
+          <div class="proj">
+            <h3>Проект 1</h3>
+            <p>Опис проекту — односторінковий лендинг з адаптивним дизайном.</p>
+          </div>
+          <div class="proj">
+            <h3>Проект 2</h3>
+            <p>Портфоліо фотографа — галерея, легка оптимізація зображень.</p>
+          </div>
+          <div class="proj">
+            <h3>Проект 3</h3>
+            <p>Документація до бібліотеки — статичний сайт з навігацією.</p>
+          </div>
+          <div class="proj">
+            <h3>Проект 4</h3>
+            <p>Маленький SPA на чистому JS (без серверної частини).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:18px">
+      <div class="card">
+        <h2 style="margin-top:0">Контакти</h2>
+        <p class="muted">Можеш написати на пошту або скористатись формою (функція відправки — умовна, бо потрібен бекенд).</p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <input type="text" id="name" placeholder="Ім'я" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <textarea id="message" placeholder="Повідомлення" required></textarea>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" type="submit">Надіслати</button>
+            <a href="mailto:your.email@example.com" style="align-self:center;text-decoration:none;color:var(--accent);font-weight:600">Надіслати на пошту</a>
+          </div>
+          <div id="formStatus" class="muted" style="margin-top:8px"></div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Мій сайт — зроблено для GitHub Pages · Статичний хостинг
+    </footer>
+  </div>
+
+  <!-- Легка функціональність JS -->
+  <script>
+    // Авто-вставка року
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Кнопка "скопіювати приклад посилання"
+    document.getElementById('copyLink').addEventListener('click', function (e) {
+      e.preventDefault();
+      const example = 'https://твій-нік.github.io/імя-репозиторію/';
+      navigator.clipboard?.writeText(example).then(() => {
+        alert('Приклад посилання скопійовано:\n' + example);
+      }).catch(()=> {
+        prompt('Скопіюй це посилання вручну:', example);
+      });
+    });
+
+    // Фіктивна відправка форми (показує повідомлення)
+    function handleSubmit(event){
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const status = document.getElementById('formStatus');
+
+      if(!name || !email || !msg){
+        status.textContent = 'Заповни всі поля, будь ласка.';
+        return;
+      }
+
+      // Оскільки на GitHub Pages немає бекенду, показуємо повідомлення.
+      status.textContent = 'Дякую! Повідомлення сформоване локально — для відправки використай пошту.';
+      // Тут можна додати відправку через third-party (Formspree, Netlify Forms тощо).
+      setTimeout(()=> status.textContent = '', 6000);
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
