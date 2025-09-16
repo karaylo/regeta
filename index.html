@@ -3,159 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Шкільний проєкт — Демонстраційна сторінка</title>
-  <meta name="description" content="Коротка демонстраційна сторінка для шкільного проєкту">
-  <!-- Легка сучасна стилізація без зовнішніх залежностей -->
+  <title>Regeta — Галерея</title>
   <style>
-    :root{
-      --bg:#f5f7fb; --card:#ffffff; --accent:#2563eb; --muted:#6b7280; --glass: rgba(255,255,255,0.6);
-      --radius:12px; --maxw:980px;
-      --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#38bdf8;--text:#e6eef8}
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:var(--mono); background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 60%); color:#111827;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; padding:40px 20px;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .wrap{width:100%; max-width:var(--maxw);}
-    header{
-      display:flex; align-items:center; gap:16px; margin-bottom:18px;
-    }
-    .logo{
-      width:76px; height:76px; border-radius:16px; background:linear-gradient(135deg,var(--accent),#7c3aed);
-      display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:20px; box-shadow:0 6px 20px rgba(37,99,235,0.18);
-    }
-    h1{font-size:24px; margin:0}
-    p.lead{margin:6px 0 0; color:var(--muted)}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, Arial; background:linear-gradient(180deg,#071028 0%, #0b1220 100%);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+    .wrap{width:100%;max-width:1100px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    header .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#022;box-shadow:0 6px 20px rgba(56,189,248,0.12)}
+    header h1{font-size:20px;margin:0}
+    .intro{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;margin-bottom:18px}
 
-    main{display:grid; grid-template-columns:1fr 340px; gap:20px; align-items:start}
-    @media (max-width:900px){ main{grid-template-columns:1fr; } .sidebar{order:2} }
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .card{background:var(--card);border-radius:12px;padding:10px;overflow:hidden;box-shadow:0 8px 30px rgba(2,6,23,0.6);transition:transform .18s ease}
+    .card img{width:100%;height:220px;object-fit:cover;border-radius:8px;display:block}
+    .card:hover{transform:translateY(-6px)}
+    .cap{margin-top:8px;font-size:14px;color:rgba(230,238,248,0.9)}
 
-    .card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:0 8px 30px rgba(15,23,42,0.06)}
-    .section+ .section{margin-top:14px}
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(2,6,23,0.85);display:none;align-items:center;justify-content:center;padding:20px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:95%;max-height:90%;border-radius:8px;box-shadow:0 12px 40px rgba(2,6,23,0.7)}
+    .close{position:fixed;top:18px;right:18px;background:rgba(255,255,255,0.06);border-radius:8px;padding:8px 10px;color:var(--text);cursor:pointer}
 
-    .steps{display:grid; gap:10px}
-    .step{display:flex; gap:12px; align-items:flex-start}
-    .step .num{width:36px;height:36px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    footer{margin-top:18px;color:rgba(230,238,248,0.7);font-size:13px;text-align:center}
+    footer .contacts{margin-top:6px;font-size:14px;color:var(--text)}
 
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-    @media (max-width:480px){ .gallery{grid-template-columns:repeat(2,1fr);} }
-    .gallery img{width:100%;height:80px;object-fit:cover;border-radius:8px}
-
-    .sidebar .meta{display:flex;flex-direction:column;gap:8px}
-    .meta .item{display:flex;justify-content:space-between;color:var(--muted)}
-
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    .btn.primary{background:var(--accent);color:white}
-    .btn.ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
-
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-
-    /* simple quiz */
-    .quiz q{display:block;margin:8px 0}
-    .result{margin-top:8px;font-weight:700}
+    @media (max-width:480px){.card img{height:160px}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo">SP</div>
+      <div class="logo">RG</div>
       <div>
-        <h1>Шкільний проєкт: Як виростити кристали</h1>
-        <p class="lead">Коротка демонстраційна сторінка — приклад для презентації в класі</p>
+        <h1>Regeta — Фото галерея</h1>
+        <div style="opacity:.8;font-size:13px">Фотографії з папки <code>regeta/images/</code></div>
       </div>
     </header>
 
+    <section class="intro">
+      <p style="margin:0">Нижче — чотири зображення, які знаходяться в <strong>regeta/images</strong>. Натисни на будь-яке фото, щоб відкрити його у збільшеному вигляді.</p>
+    </section>
+
     <main>
-      <!-- Основний контент -->
-      <section class="card">
-        <div class="section">
-          <h2>Про проєкт</h2>
-          <p>Цей проєкт показує простий експеримент: вирощування кристалів звичайних солей (наприклад, кухонної або мідного купруму). Це безпечний дослід, який ілюструє кристалічну структуру і процес насичення розчинів.</p>
-        </div>
-
-        <div class="section">
-          <h3>Матеріали</h3>
-          <ul>
-            <li>Сіль (NaCl) або інша соль</li>
-            <li>Тепла вода</li>
-            <li>Ємність, нитка, паличка</li>
-            <li>Ложка, піпетка та папірці для нотаток</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>Кроки експерименту</h3>
-          <div class="steps">
-            <div class="step"><div class="num">1</div><div>Розчиніть сіль у теплій воді, поки розчин не стане насиченим.</div></div>
-            <div class="step"><div class="num">2</div><div>Процідіть розчин і підвісьте нитку над ємністю.</div></div>
-            <div class="step"><div class="num">3</div><div>Дайте розчину повільно охолонути і випаровуватися — кристали утворюватимуться на нитці.</div></div>
-            <div class="step"><div class="num">4</div><div>Зберігайте нотатки про розмір кристалів і час — це важливо для висновків.</div></div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h3>Галерея (приклади)</h3>
-          <div class="gallery">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23eaf2ff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%232256eb'>Фото 1</text></svg>" alt="Фото 1">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23fff0f6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%237c3aed'>Фото 2</text></svg>" alt="Фото 2">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23f0fff4'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23059669'>Фото 3</text></svg>" alt="Фото 3">
-          </div>
-        </div>
-
-        <div class="section">
-          <h3>Коротка вікторина</h3>
-          <div class="quiz">
-            <label>1) Що означає "насичений розчин"?</label>
-            <select id="q1">
-              <option value="">-- оберіть відповідь --</option>
-              <option value="a">Розчин, який містить максимум розчиненої речовини при даній температурі</option>
-              <option value="b">Рідина, що кипить</option>
-              <option value="c">Розчин без солі</option>
-            </select>
-            <div class="result" id="result"></div>
-            <button class="btn primary" onclick="checkQuiz()">Перевірити</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Бічна панель -->
-      <aside class="sidebar card">
-        <div class="meta">
-          <div class="item"><strong>Автор:</strong><span>Твоє Ім'я</span></div>
-          <div class="item"><strong>Клас:</strong><span>8-А</span></div>
-          <div class="item"><strong>Дата:</strong><span id="date"></span></div>
-        </div>
-
-        <div style="margin-top:12px">
-          <a class="btn ghost" href="#" onclick="window.print();return false;">Друкувати</a>
-          <a class="btn primary" href="#top" style="margin-left:8px">На початок</a>
-        </div>
-
-        <div style="margin-top:12px;color:var(--muted);font-size:14px">Порада: додай свої фото в блок галереї або опишіть спостереження для кращої демонстрації.</div>
-      </aside>
+      <div class="gallery">
+        <figure class="card"><img src="regeta/images/regeta1.jpg" alt="regeta1" loading="lazy"><figcaption class="cap">regeta1.jpg</figcaption></figure>
+        <figure class="card"><img src="regeta/images/regeta2.jpg" alt="regeta2" loading="lazy"><figcaption class="cap">regeta2.jpg</figcaption></figure>
+        <figure class="card"><img src="regeta/images/regeta3.jpg" alt="regeta3" loading="lazy"><figcaption class="cap">regeta3.jpg</figcaption></figure>
+        <figure class="card"><img src="regeta/images/regeta4.jpg" alt="regeta4" loading="lazy"><figcaption class="cap">regeta4.jpg</figcaption></figure>
+      </div>
     </main>
 
-    <footer class="card">Сторінка згенерована як приклад для шкільного проєкту • Приємної презентації!</footer>
+    <footer>
+      <div>GitPages ∙ karaylo</div>
+      <div class="contacts">
+        Discord: <strong>krnon</strong> &nbsp;|&nbsp; Email: <a href="mailto:potukxp@gmail.com">potukxp@gmail.com</a>
+      </div>
+    </footer>
+  </div>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+    <button id="close" class="close" aria-label="Закрити">✕</button>
+    <img id="lbimg" src="" alt=""/>
   </div>
 
   <script>
-    // Показує сьогоднішню дату
-    document.getElementById('date').textContent = new Date().toLocaleDateString('uk-UA');
-
-    // Простий чек для вікторини
-    function checkQuiz(){
-      const a = document.getElementById('q1').value;
-      const res = document.getElementById('result');
-      if(!a){ res.textContent = 'Будь ласка, оберіть відповідь.'; return; }
-      if(a === 'a'){
-        res.textContent = 'Правильно! Насичений розчин містить максимум розчиненої речовини.';
-      } else {
-        res.textContent = 'Нажаль, це не вірно. Подумай ще — підказка: пов'язано з кількістю розчиненої речовини.';
-      }
-    }
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', ()=>{
+        const lb = document.getElementById('lightbox');
+        const lbimg = document.getElementById('lbimg');
+        lbimg.src = img.src;
+        lbimg.alt = img.alt;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+      })
+    })
+    document.getElementById('close').addEventListener('click', ()=>{
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      document.getElementById('lbimg').src = '';
+    })
+    // закриття по бекдропу
+    document.getElementById('lightbox').addEventListener('click', (e)=>{
+      if(e.target.id==='lightbox') document.getElementById('close').click();
+    })
+    // закриття кнопкою Esc
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') document.getElementById('close').click() })
   </script>
 </body>
 </html>
