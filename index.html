@@ -1,126 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Хроніки сатанинського кугута</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Шкільний проєкт — Демонстраційна сторінка</title>
+  <meta name="description" content="Коротка демонстраційна сторінка для шкільного проєкту">
+  <!-- Легка сучасна стилізація без зовнішніх залежностей -->
   <style>
-    body {
-      margin: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      background: #111;
-      color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+    :root{
+      --bg:#f5f7fb; --card:#ffffff; --accent:#2563eb; --muted:#6b7280; --glass: rgba(255,255,255,0.6);
+      --radius:12px; --maxw:980px;
+      --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
-    #game {
-      max-width: 700px;
-      text-align: center;
-      padding: 20px;
-      background: #1a1a1a;
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--mono); background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 60%); color:#111827;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; padding:40px 20px;
+      display:flex; align-items:center; justify-content:center;
     }
-    #sceneText {
-      font-size: 1.3em;
-      margin-bottom: 20px;
-      min-height: 150px;
+    .wrap{width:100%; max-width:var(--maxw);}
+    header{
+      display:flex; align-items:center; gap:16px; margin-bottom:18px;
     }
-    button {
-      background: #ff4747;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: 0.2s;
+    .logo{
+      width:76px; height:76px; border-radius:16px; background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:20px; box-shadow:0 6px 20px rgba(37,99,235,0.18);
     }
-    button:hover {
-      background: #e63a3a;
-      transform: scale(1.05);
-    }
-    .shake {
-      animation: shake 0.5s;
-    }
-    @keyframes shake {
-      0% { transform: translate(0, 0); }
-      20% { transform: translate(-5px, 3px); }
-      40% { transform: translate(5px, -3px); }
-      60% { transform: translate(-5px, 3px); }
-      80% { transform: translate(5px, -3px); }
-      100% { transform: translate(0, 0); }
-    }
-    footer {
-      margin-top: 25px;
-      font-size: 0.9em;
-    }
-    footer a {
-      display: inline-block;
-      margin: 6px;
-      padding: 10px 16px;
-      background: #58f5c4;
-      color: #111;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-    footer a:hover {
-      background: #3bb896;
-    }
+    h1{font-size:24px; margin:0}
+    p.lead{margin:6px 0 0; color:var(--muted)}
+
+    main{display:grid; grid-template-columns:1fr 340px; gap:20px; align-items:start}
+    @media (max-width:900px){ main{grid-template-columns:1fr; } .sidebar{order:2} }
+
+    .card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:0 8px 30px rgba(15,23,42,0.06)}
+    .section+ .section{margin-top:14px}
+
+    .steps{display:grid; gap:10px}
+    .step{display:flex; gap:12px; align-items:flex-start}
+    .step .num{width:36px;height:36px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    @media (max-width:480px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+    .gallery img{width:100%;height:80px;object-fit:cover;border-radius:8px}
+
+    .sidebar .meta{display:flex;flex-direction:column;gap:8px}
+    .meta .item{display:flex;justify-content:space-between;color:var(--muted)}
+
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.primary{background:var(--accent);color:white}
+    .btn.ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* simple quiz */
+    .quiz q{display:block;margin:8px 0}
+    .result{margin-top:8px;font-weight:700}
   </style>
 </head>
 <body>
-  <div id="game">
-    <div id="sceneText">Натисни "Почати", щоб увійти в легенду 🐓</div>
-    <button id="nextBtn">Почати</button>
-    <footer id="contact" style="display:none;">
-      <h3>Зворотній зв'язок</h3>
-      <a href="https://discord.gg/QQKEwWMGBH" target="_blank">Наш Discord</a>
-      <a href="mailto:potukxp@gmail.com">Написати на пошту</a>
-    </footer>
+  <div class="wrap">
+    <header>
+      <div class="logo">SP</div>
+      <div>
+        <h1>Шкільний проєкт: Як виростити кристали</h1>
+        <p class="lead">Коротка демонстраційна сторінка — приклад для презентації в класі</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- Основний контент -->
+      <section class="card">
+        <div class="section">
+          <h2>Про проєкт</h2>
+          <p>Цей проєкт показує простий експеримент: вирощування кристалів звичайних солей (наприклад, кухонної або мідного купруму). Це безпечний дослід, який ілюструє кристалічну структуру і процес насичення розчинів.</p>
+        </div>
+
+        <div class="section">
+          <h3>Матеріали</h3>
+          <ul>
+            <li>Сіль (NaCl) або інша соль</li>
+            <li>Тепла вода</li>
+            <li>Ємність, нитка, паличка</li>
+            <li>Ложка, піпетка та папірці для нотаток</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Кроки експерименту</h3>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><div>Розчиніть сіль у теплій воді, поки розчин не стане насиченим.</div></div>
+            <div class="step"><div class="num">2</div><div>Процідіть розчин і підвісьте нитку над ємністю.</div></div>
+            <div class="step"><div class="num">3</div><div>Дайте розчину повільно охолонути і випаровуватися — кристали утворюватимуться на нитці.</div></div>
+            <div class="step"><div class="num">4</div><div>Зберігайте нотатки про розмір кристалів і час — це важливо для висновків.</div></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Галерея (приклади)</h3>
+          <div class="gallery">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23eaf2ff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%232256eb'>Фото 1</text></svg>" alt="Фото 1">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23fff0f6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%237c3aed'>Фото 2</text></svg>" alt="Фото 2">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23f0fff4'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23059669'>Фото 3</text></svg>" alt="Фото 3">
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Коротка вікторина</h3>
+          <div class="quiz">
+            <label>1) Що означає "насичений розчин"?</label>
+            <select id="q1">
+              <option value="">-- оберіть відповідь --</option>
+              <option value="a">Розчин, який містить максимум розчиненої речовини при даній температурі</option>
+              <option value="b">Рідина, що кипить</option>
+              <option value="c">Розчин без солі</option>
+            </select>
+            <div class="result" id="result"></div>
+            <button class="btn primary" onclick="checkQuiz()">Перевірити</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Бічна панель -->
+      <aside class="sidebar card">
+        <div class="meta">
+          <div class="item"><strong>Автор:</strong><span>Твоє Ім'я</span></div>
+          <div class="item"><strong>Клас:</strong><span>8-А</span></div>
+          <div class="item"><strong>Дата:</strong><span id="date"></span></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <a class="btn ghost" href="#" onclick="window.print();return false;">Друкувати</a>
+          <a class="btn primary" href="#top" style="margin-left:8px">На початок</a>
+        </div>
+
+        <div style="margin-top:12px;color:var(--muted);font-size:14px">Порада: додай свої фото в блок галереї або опишіть спостереження для кращої демонстрації.</div>
+      </aside>
+    </main>
+
+    <footer class="card">Сторінка згенерована як приклад для шкільного проєкту • Приємної презентації!</footer>
   </div>
 
   <script>
-    const scenes = [
-      "Було то пізньої ночі після дербі ФК 'Хлопаки' з 'Шахраями'. У шинку сиділи Регета, Денис, Смик, Кіш, Маркіян, Кабіна та Олена.",
-      "Регета витяг патицю: 'Ходімо до Коцюруба того кугута йобнем!'",
-      "Денис рже: 'Кугут страшний як твій голем у доті, але я в темі!'",
-      "Смик хряпнув самогонки: 'Завтра маю курей грузити, але піду на цирк!'",
-      "Вночі вони підкрались до хати Коцюруба. Кугут сидів червоний як диявол.",
-      "Кугут: 'КУКУРИКУУУ, БЛЯДЬ!' — всі охуїли.",
-      "Кіш кинувся — кугут клюнув його в лоба! Маркіян аж пиво розлив.",
-      "Очі кугута засяяли зеленим... Василь почав сцятись: 'То шо, півень-чаклун?'",
-      "Вийшов Коцюруб у трусах з пивом: 'Мого кугута ворувати? Ви шо, довбойоби?'",
-      "Кугут заговорив людським голосом: 'Я є прокляття села! Хто мене торкнеться — стане куркою!'",
-      "Регета: 🐓 (курка з патицею), Денис: 🐥 'Голем!', Смик: 🚜-курка, Назар: курка-будильник, Маркіян: курка з пивом, Кабіна: курка з ноутом, Олена: курка в сукні.",
-      "Коцюруб попивав пиво і ржав: 'Я ж казав, шо мій кугут сатанинський!'",
-      "🐓 Game Over: всі стали курками!"
-    ];
+    // Показує сьогоднішню дату
+    document.getElementById('date').textContent = new Date().toLocaleDateString('uk-UA');
 
-    let sceneIndex = 0;
-    const sceneText = document.getElementById("sceneText");
-    const nextBtn = document.getElementById("nextBtn");
-    const contact = document.getElementById("contact");
-
-    nextBtn.addEventListener("click", () => {
-      if (sceneIndex < scenes.length) {
-        sceneText.textContent = scenes[sceneIndex];
-        sceneIndex++;
-        if (sceneIndex === 6) {
-          document.body.classList.add("shake");
-          setTimeout(() => document.body.classList.remove("shake"), 500);
-          new Audio("https://pixabay.com/sound-effects/rooster-cry-chicken-rooster-305576/").play();
-        }
+    // Простий чек для вікторини
+    function checkQuiz(){
+      const a = document.getElementById('q1').value;
+      const res = document.getElementById('result');
+      if(!a){ res.textContent = 'Будь ласка, оберіть відповідь.'; return; }
+      if(a === 'a'){
+        res.textContent = 'Правильно! Насичений розчин містить максимум розчиненої речовини.';
       } else {
-        sceneText.textContent = "Кінець історії. Тепер ти знаєш правду 🐔";
-        nextBtn.style.display = "none";
-        contact.style.display = "block";
+        res.textContent = 'Нажаль, це не вірно. Подумай ще — підказка: пов'язано з кількістю розчиненої речовини.';
       }
-    });
+    }
   </script>
 </body>
 </html>
